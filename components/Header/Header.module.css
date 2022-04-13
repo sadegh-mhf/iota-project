@@ -1,0 +1,42 @@
+.main {
+  width: 100vw;
+  height: 70px;
+  background-color: #d8dbe2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 160px;
+}
+
+.thumbnail {
+  margin-left: 20px;
+}
+
+.navbar {
+  width: 700px;
+}
+.navbar_list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar_list_menuItems {
+  display: flex;
+  align-items: center;
+}
+
+/*# sourceMappingURL=Header.module.css.map */
