@@ -1,20 +1,91 @@
 html,
 body {
 
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-  list-style: none;
-  overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    /*overflow-x: hidden;*/
+}
+
+.swiper {
+    width: 100%;
+    height: 100vh;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    position: relative;
+    /* Center slide text vertically */
+    /*display: -webkit-box;*/
+    /*display: -ms-flexbox;*/
+    /*display: -webkit-flex;*/
+    /*display: flex;*/
+    /*-webkit-box-pack: center;*/
+    /*-ms-flex-pack: center;*/
+    /*-webkit-justify-content: center;*/
+    /*justify-content: center;*/
+    /*-webkit-box-align: center;*/
+    /*-ms-flex-align: center;*/
+    /*-webkit-align-items: center;*/
+    /*align-items: center;*/
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper-slide video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.swiper-button-next {
+    right: 135px !important;
+    padding: 30px;
+    border-radius: 50%;
+    border: 1px solid #5c6071;
+    z-index: 2;
+    background-color: #181e32;
+}
+
+.swiper-button-next::after, .swiper-button-prev::after {
+    color: whitesmoke;
+}
+
+.swiper-button-prev {
+    left: 135px !important;
+    padding: 30px;
+    border-radius: 50%;
+    border: 1px solid #5c6071;
+    z-index: 2;
+    background-color: #181e32;
+}
+
+hr {
+    position: absolute;
+    z-index: 1;
+    border: 1px solid #5c6071;
+    top: 51%;
+    transform: translateY(50%);
+    width: 100%;
 }
