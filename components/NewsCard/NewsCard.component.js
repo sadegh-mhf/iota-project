@@ -4,7 +4,9 @@ export default function NewsCard(props) {
     return (
         <>
             <div className={styles.card}>
-                <img src={'/assets/images/instagram-svgrepo-com (1).svg'} alt=""/>
+                <div className={styles.image}>
+                    <img src={'/assets/images/chrysalis-status-page.png'} alt=""/>
+                </div>
                 <div className={styles.infoText}>
                     <span className={styles.infoText_category}>DISCOVER</span>
                     <h5 className={styles.infoText_subject}>VIDEOS & PODCASTS</h5>
@@ -13,7 +15,10 @@ export default function NewsCard(props) {
                 </div>
             </div>
             <div className={styles.card}>
-                <img src={'/assets/images/instagram-svgrepo-com (1).svg'} alt=""/>
+                {/*<div className={styles.image}>*/}
+                {/*    /!*<img src={''} alt=""/>*!/*/}
+                {/*</div>*/}
+                <img src={''} alt=""/>
                 <div className={styles.infoText}>
                     <span className={styles.infoText_category}>DISCOVER</span>
                     <h5 className={styles.infoText_subject}>VIDEOS & PODCASTS</h5>
@@ -22,7 +27,9 @@ export default function NewsCard(props) {
                 </div>
             </div>
             <div className={styles.card}>
-                <img src={'/assets/images/instagram-svgrepo-com (1).svg'} alt=""/>
+                <div className={styles.image}>
+                    <img src={'/assets/images/IOTA_Videos_and_Podcast.jpg'} alt=""/>
+                </div>
                 <div className={styles.infoText}>
                     <span className={styles.infoText_category}>DISCOVER</span>
                     <h5 className={styles.infoText_subject}>VIDEOS & PODCASTS</h5>

@@ -4,7 +4,7 @@ import socialMedia from './Footer.config';
 export default function Footer() {
     return (
         <section className={styles.main}>
-            <img src={'https://www.iota.org/images/footer-pattern.svg'}
+            <img src={'/assets/images/footer-pattern.svg'}
                  className={styles.footerBg}
                  alt={'footer-background'}/>
             <div className={styles.content}>

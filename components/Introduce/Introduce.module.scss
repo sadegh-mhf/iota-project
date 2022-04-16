@@ -32,7 +32,7 @@
     &_subject {
       margin-top: 40px;
       margin-bottom: 20px;
-      color: #232323;
+      color: #131f37;
       font-size: 2.2rem;
     }
 
@@ -45,7 +45,7 @@
   }
 }
 
-.btn{
+.btn {
   padding: 17px 25px;
   border: none;
   border-radius: 7px;
@@ -55,4 +55,5 @@
   font-weight: bold;
   margin-top: 30px;
   letter-spacing: 0.1rem;
+  cursor: pointer;
 }

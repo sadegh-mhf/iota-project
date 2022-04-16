@@ -1,34 +1,43 @@
-.card{
+.card {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 30%;
   height: 100%;
   //flex-grow: 1;
+}
+
+.image {
+  max-width: 50%;
+  height: 100%;
+  margin-right: 15px;
 
   & img {
     height: 100%;
-    width: 40%;
-    margin-right: 20px;
+    width: 100%;
+    object-fit: cover;
+    background-position: center;
   }
 }
-.infoText{
-  flex-grow: 1;
+
+.infoText {
+  width: 50%;
   height: 100%;
   padding: 7px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   &_category {
     color: #8493ad;
     font-size: 0.8rem;
   }
 
-  &_subject{
+  &_subject {
     color: whitesmoke;
   }
 
-  &_description{
+  &_description {
     color: whitesmoke;
     font-size: 0.9rem;
     line-height: 1.2;
