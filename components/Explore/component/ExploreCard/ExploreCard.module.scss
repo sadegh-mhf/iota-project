@@ -1,0 +1,142 @@
+.main {
+  width: 330px;
+  height: 330px;
+  border-radius: 10px;
+  padding: 25px 35px;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  &:hover {
+    .circle {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background: linear-gradient(315deg, #00e0ca 8.22%, #0fc1b7);
+      width: 500px;
+      height: 500px;
+      transition: 0.3s all ease-in-out;
+      opacity: 0.5;
+      z-index: 2;
+    }
+
+    .dynamic_info {
+      opacity: 1;
+      margin-top: 30px;
+    }
+  }
+}
+
+.static {
+  width: 95%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &_category {
+    color: #0fc1b7;
+    margin-top: 20px;
+  }
+
+  &_subject {
+    color: #131f37;
+    font-size: 2.2rem;
+    line-height: 2.5rem;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  &_info {
+    color: #5c6071;
+    font-size: 1.2rem;
+  }
+}
+
+.staticBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  position: absolute;
+  bottom: 0;
+  z-index: 5;
+
+  & span {
+    color: #485776;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+  }
+
+  & img {
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+    transform: rotate(-90deg);
+    transition: all 0.3s ease;
+    filter: invert(64%) sepia(95%) saturate(2905%) hue-rotate(135deg) brightness(99%) contrast(88%);;
+  }
+
+  &:hover {
+    img {
+      transform: rotate(-90deg) translateY(10px);
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+.dynamicBtn {
+  @extend .staticBtn;
+
+  & span {
+    color: whitesmoke;
+  }
+}
+
+.dynamic {
+  width: 95%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: whitesmoke;
+
+  &_subject {
+    font-size: 2.2rem;
+    z-index: 6;
+  }
+
+  &_background {
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    object-fit: cover;
+  }
+
+  &_info {
+    opacity: 0;
+    transition: all 0.3s linear;
+    text-align: center;
+    z-index: 6;
+  }
+}
+
+.circle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: linear-gradient(315deg, #00e0ca 8.22%, #0fc1b7);
+  width: 33px;
+  height: 33px;
+  transition: 0.3s all ease-in-out;
+  opacity: 0;
+  z-index: 2;
+}

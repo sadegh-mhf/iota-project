@@ -1,0 +1,21 @@
+.main {
+  width: 100%;
+  height: fit-content;
+  background-color: #f6f8fc;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 80%;
+}
+
+.content {
+  width: 100%;
+  padding: 80px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
