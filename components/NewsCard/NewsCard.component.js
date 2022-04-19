@@ -1,42 +1,31 @@
 import styles from './NewsCard.module.scss'
+import {BASE_URL} from "../../configs/variables.cofig";
 
 export default function NewsCard(props) {
     return (
         <>
-            <div className={styles.card}>
-                <div className={styles.image}>
-                    <img src={'/assets/images/chrysalis-status-page.png'} alt=""/>
-                </div>
-                <div className={styles.infoText}>
-                    <span className={styles.infoText_category}>DISCOVER</span>
-                    <h5 className={styles.infoText_subject}>VIDEOS & PODCASTS</h5>
-                    <p className={styles.infoText_description}>Listen to the latest news and updates from the IOTA
-                        Foundation</p>
-                </div>
-            </div>
-            <div className={styles.card}>
-                {/*<div className={styles.image}>*/}
-                {/*    /!*<img src={''} alt=""/>*!/*/}
-                {/*</div>*/}
-                <img src={''} alt=""/>
-                <div className={styles.infoText}>
-                    <span className={styles.infoText_category}>DISCOVER</span>
-                    <h5 className={styles.infoText_subject}>VIDEOS & PODCASTS</h5>
-                    <p className={styles.infoText_description}>Listen to the latest news and updates from the IOTA
-                        Foundation</p>
-                </div>
-            </div>
-            <div className={styles.card}>
-                <div className={styles.image}>
-                    <img src={'/assets/images/IOTA_Videos_and_Podcast.jpg'} alt=""/>
-                </div>
-                <div className={styles.infoText}>
-                    <span className={styles.infoText_category}>DISCOVER</span>
-                    <h5 className={styles.infoText_subject}>VIDEOS & PODCASTS</h5>
-                    <p className={styles.infoText_description}>Listen to the latest news and updates from the IOTA
-                        Foundation</p>
-                </div>
-            </div>
+            {
+                props.news.map(item => {
+                    return (
+                    <div className={styles.card} key={item.id}>
+                        {
+                            !!item.image &&
+                            <div className={styles.image}>
+                                <img src={`${BASE_URL}${item.image}`} alt=""/>
+                            </div>
+                        }
+                        <div className={styles.infoText}>
+                            <span className={styles.infoText_category}>{item.category}</span>
+                            <h5 className={styles.infoText_subject}>{item.subject}</h5>
+                            {
+                                !!item.description &&
+                                <p className={styles.infoText_description}>{item.description}</p>
+                            }
+                        </div>
+                    </div>
+                    )
+                })
+            }
         </>
 
     )

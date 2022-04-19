@@ -2,14 +2,35 @@ import Slider from "../components/Slider/Slider.component";
 import Introduce from "../components/Introduce/Introduce.component";
 import GetStarted from "../components/GetStarted/GetStarted.component";
 import Explore from "../components/Explore/Explore.component";
+import {getFirstSliderData} from "./api/getData";
+import axios from "axios";
 
-export default function Home() {
+function Home(props) {
+    const {firstSliderData, fsNewsData, getStartedData, exploreData} = props
     return (
         <div>
-            <Slider />
-            <Introduce />
-            <GetStarted />
-            <Explore />
+            <Slider data={firstSliderData} news={fsNewsData}/>
+            <Introduce/>
+            <GetStarted data={getStartedData}/>
+            <Explore data={exploreData}/>
         </div>
     )
 }
+
+export async function getStaticProps() {
+
+    const firstSliderData = await getFirstSliderData('first-slider')
+    const fsNewsData = await getFirstSliderData('first-slider-news')
+    const getStartedData = await getFirstSliderData('get-started')
+    const exploreData = await getFirstSliderData('explore')
+    return {
+        props: {
+            firstSliderData,
+            fsNewsData,
+            getStartedData,
+            exploreData
+        }
+    }
+}
+
+export default Home

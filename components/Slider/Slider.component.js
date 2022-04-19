@@ -1,4 +1,4 @@
-import React, {useRef, useState, ReactDOM} from "react";
+import React, {useRef, useState, ReactDOM, useEffect} from "react";
 // Import Swiper React components
 import {Swiper, SwiperSlide} from "swiper/react";
 
@@ -13,13 +13,25 @@ import styles from './Slider.module.scss'
 // import required modules
 import {Autoplay, Pagination, Navigation} from "swiper";
 import NewsCard from "../NewsCard/NewsCard.component";
+import {loadGetInitialProps} from "next/dist/shared/lib/utils";
 
-export default function App() {
-    const swiperSlider = useRef(null)
-    const videoFiles = [{title: 'world', path: '/assets/videos/Home_2.webm'}, {
-        title: 'woman',
-        path: '/assets/videos/Home.webm'
-    }, {title: 'machine', path: '/assets/videos/Home_3.webm'}]
+export default function App(props) {
+    const test = useRef()
+
+    let videoFiles = [
+        {subject: 'world', path: '/assets/videos/Home_2.webm'},
+        {subject: 'woman', path: '/assets/videos/Home.webm'},
+        {subject: 'machine', path: '/assets/videos/Home_3.webm'}
+    ]
+
+    let compeleteData = videoFiles.map((item, i) => Object.assign({}, item, props.data[i]));
+
+    useEffect(() => {
+        // console.log(test.current.hasOwnProperty('swiper-slide-active'))
+        // console.log(test.current.classList.contains('swiper-slide-active'))
+        // console.log(test.current.classList.contains('swiper-slide'))
+    }, [test])
+
     return (
         <>
             <Swiper
@@ -39,19 +51,20 @@ export default function App() {
             >
                 <hr/>
                 {
-                    videoFiles.map(item => {
+                    compeleteData.map(item => {
                         return (
-                            <SwiperSlide key={item.title} ref={swiperSlider}>
+                            <SwiperSlide  key={item.id} ref={test}>
                                 <video
                                     src={item.path}
                                     muted
                                     autoPlay={"autoplay"}
                                     loop
-                                >{item.title}</video>
+                                >{item.subject}</video>
+
                                 <div className={styles.firstSlideInfo}>
                                     <div className={styles.varText}>
-                                        <h1 className={styles.varText_title}>title comes here</h1>
-                                        <span className={styles.varText_desc}>this is description</span>
+                                        <h1 className={styles.varText_title}>{item.title}</h1>
+                                        <span className={styles.varText_desc}>{item.description}</span>
                                     </div>
                                 </div>
                             </SwiperSlide>
@@ -61,7 +74,7 @@ export default function App() {
                 <div className={styles.sliderFooter}>
                     <div className={styles.container}>
                         <div className={styles.related}>
-                            <NewsCard/>
+                            <NewsCard news={props.news}/>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import styles from './ExploreCard.module.scss'
+import {BASE_URL} from "../../../../configs/variables.cofig";
 
 export default function ExploreCard(props) {
     return (
@@ -15,11 +16,12 @@ export default function ExploreCard(props) {
                             <img src="/assets/images/down-arrow-of-angle-svgrepo-com.svg" alt="right-arrow"/>
                         </div>
                     </div> :
+
                     <div className={styles.dynamic}>
-                        <img className={styles.dynamic_background} src="/assets/images/engineering_card_.jpg" alt="card-background"/>
-                        <h1 className={styles.dynamic_subject}>Engineering</h1>
+                        <img className={styles.dynamic_background} src={`${BASE_URL}${props.data.image}`} alt="card-background"/>
+                        <h1 className={styles.dynamic_subject}>{props.data.subject}</h1>
                         <div className={styles.dynamic_info}>
-                            <p className={styles.dynamic_info_text}>Learn about IOTA's cutting-edge technologies and products</p>
+                            <p className={styles.dynamic_info_text}>{props.data.description}</p>
                         </div>
                         <div className={styles.circle}> </div>
                         <div className={styles.dynamicBtn}>
