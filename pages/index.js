@@ -3,16 +3,14 @@ import Introduce from "../components/Introduce/Introduce.component";
 import GetStarted from "../components/GetStarted/GetStarted.component";
 import Explore from "../components/Explore/Explore.component";
 import {getFirstSliderData} from "./api/getData";
-import axios from "axios";
 import AboutIOTA from "../components/AboutIOTA/AboutIOTA.component";
-import Head from "next/head";
 
 function Home(props) {
     const {firstSliderData, fsNewsData, getStartedData, exploreData} = props
     return (
         <div>
             <Slider data={firstSliderData} news={fsNewsData}/>
-            <AboutIOTA />
+            <AboutIOTA/>
             <Introduce/>
             <GetStarted data={getStartedData}/>
             <Explore data={exploreData}/>
