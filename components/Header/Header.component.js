@@ -20,7 +20,7 @@ export default function Header() {
                     <ul className={styles.navbar_list}>
                         {navbarItems.map(item => {
                             return (
-                                <li key={item.label} className={item.thumbnail ? `${styles.navbarHighlight} ${styles.navbar_list_menuItems}` : styles.navbar_list_menuItems}>
+                                <li key={item.label} className={item.thumbnail ? `${styles.navbarHighlight}` : styles.navbar_list_menuItems}>
                                 <span>
                                     {item.label}
                                 </span>

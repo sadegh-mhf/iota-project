@@ -33,11 +33,30 @@
 
 .navbarHighlight {
   background-color: rgba(71, 97, 113, 0.4);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  cursor: pointer;
 
+  & span {
+    font-weight: bold;
+    color: whitesmoke;
+  }
+
+  & img {
+    filter: invert(100%) sepia(90%) saturate(100%) hue-rotate(50deg) brightness(100%) contrast(100%);
+  }
+
+  &:hover{
+    background-color: rgba(7, 42, 66, 0.4);
+  }
 }
 
+
 .navbar {
-  width: 700px;
+  width: 800px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -55,14 +74,36 @@
       align-items: center;
       justify-content: center;
       flex-grow: 1;
+      position: relative;
+      cursor: pointer;
 
       & span {
         font-weight: bold;
         color: whitesmoke;
       }
 
-      & img {
-        filter: invert(100%) sepia(90%) saturate(100%) hue-rotate(50deg) brightness(100%) contrast(100%);
+      &:after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 4px;
+        background: #00e0ca;
+        position: absolute;
+        bottom: 20%;
+        left: 25px;
+        transition: 0.3s all ease-in-out;
+      }
+
+      &:hover:after {
+        content: '';
+        display: block;
+        width: calc(100% - 50px);
+        height: 4px;
+        background: #00e0ca;
+        position: absolute;
+        bottom: 20%;
+        left: 25px;
+        transition: 0.3s all ease-in-out;
       }
     }
   }
