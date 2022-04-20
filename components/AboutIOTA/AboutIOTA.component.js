@@ -1,10 +1,8 @@
 import styles from './AboutIOTA.module.scss'
-import Particles from 'react-particles-js';
 
 export default function AboutIOTA() {
     return (
         <section className={styles.main}>
-            <Particles />
             <div className={styles.container}>
                 <div className={styles.content}>
                     <div className={styles.text}>
