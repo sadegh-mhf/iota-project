@@ -18,19 +18,11 @@ import {loadGetInitialProps} from "next/dist/shared/lib/utils";
 export default function App(props) {
     const test = useRef()
 
-    let videoFiles = [
-        {subject: 'world', path: '/assets/videos/Home_2.webm'},
-        {subject: 'woman', path: '/assets/videos/Home.webm'},
-        {subject: 'machine', path: '/assets/videos/Home_3.webm'}
-    ]
-
-    let compeleteData = videoFiles.map((item, i) => Object.assign({}, item, props.data[i]));
-
-    useEffect(() => {
-        // console.log(test.current.hasOwnProperty('swiper-slide-active'))
-        // console.log(test.current.classList.contains('swiper-slide-active'))
-        // console.log(test.current.classList.contains('swiper-slide'))
-    }, [test])
+    // useEffect(() => {
+    //     console.log(test.current.hasOwnProperty('swiper-slide-active'))
+    //     console.log(test.current.classList.contains('swiper-slide-active'))
+    //     console.log(test.current.classList.contains('swiper-slide'))
+    // }, [])
 
     return (
         <>
@@ -51,11 +43,11 @@ export default function App(props) {
             >
                 <hr/>
                 {
-                    compeleteData.map(item => {
+                    props.data.map(item => {
                         return (
                             <SwiperSlide  key={item.id} ref={test}>
                                 <video
-                                    src={item.path}
+                                    src={item.videoPath}
                                     muted
                                     autoPlay={"autoplay"}
                                     loop
