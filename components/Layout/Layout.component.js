@@ -7,7 +7,7 @@ export default function Layout(props) {
         <>
             <Head>
                 <title>Home | IOTA</title>
-                <link rel="icon" href="/favicon-32x32.png"/>
+                <link rel="icon" href="/IOTA_favicon.png"/>
             </Head>
             <Header/>
             {props.children}
