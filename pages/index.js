@@ -22,7 +22,6 @@ function Home(props) {
 export async function getStaticProps() {
 
     const firstSliderData = await getFirstSliderData('first-slider')
-    console.log(firstSliderData)
     const fsNewsData = await getFirstSliderData('first-slider-news')
     const getStartedData = await getFirstSliderData('get-started')
     const exploreData = await getFirstSliderData('explore')
