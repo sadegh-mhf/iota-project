@@ -1,4 +1,4 @@
-import React, {useRef, useState, ReactDOM, useEffect} from "react";
+import React, {useRef} from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
 
 import "swiper/css";
@@ -10,16 +10,16 @@ import styles from './Slider.module.scss'
 import {Autoplay, Navigation} from "swiper";
 import NewsCard from "../NewsCard/NewsCard.component";
 
-export default function App(props) {
+export default function Slider(props) {
     const test = useRef()
 
-    let videoFiles = [
+    const videoFiles = [
         {subject: 'world', path: '/assets/videos/Home_2.webm'},
         {subject: 'woman', path: '/assets/videos/Home.webm'},
         {subject: 'machine', path: '/assets/videos/Home_3.webm'}
     ]
 
-    let compeleteData = videoFiles.map((item, i) => Object.assign({}, item, props.data[i]));
+    const compeleteData = videoFiles.map((item, i) => Object.assign({}, item, props.data[i]));
 
     // useEffect(() => {
     //     console.log(test.current.hasOwnProperty('swiper-slide-active'))
@@ -48,7 +48,7 @@ export default function App(props) {
                 {
                     compeleteData.map(item => {
                         return (
-                            <SwiperSlide  key={item.id} ref={test}>
+                            <SwiperSlide key={item.id} ref={test}>
                                 <video
                                     src={item.path}
                                     muted
