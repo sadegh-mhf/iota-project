@@ -5,6 +5,7 @@ import Explore from "../components/Explore/Explore.component";
 import {getFirstSliderData} from "./api/getData";
 import axios from "axios";
 import AboutIOTA from "../components/AboutIOTA/AboutIOTA.component";
+import Head from "next/head";
 
 function Home(props) {
     const {firstSliderData, fsNewsData, getStartedData, exploreData} = props
