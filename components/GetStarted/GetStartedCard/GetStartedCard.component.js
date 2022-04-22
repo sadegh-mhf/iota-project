@@ -26,9 +26,9 @@ export default function GetStartedCard(props) {
                 </div>
 
                 <div className={styles.features}>
-                    {props.data.features.map(feature => {
+                    {props.data.features.map((feature, index) => {
                         return (
-                            <div className={styles.features_item}>
+                            <div className={styles.features_item} key={index}>
                                 <img src="/assets/images/down-arrow-of-angle-svgrepo-com.svg" alt="arrow-right"/>
                                 <span>{feature}</span>
                             </div>

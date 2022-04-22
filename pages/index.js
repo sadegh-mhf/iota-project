@@ -6,11 +6,12 @@ import {getHomePageData} from "./api/getData";
 import AboutIOTA from "../components/AboutIOTA/AboutIOTA.component";
 
 function Home(props) {
-    const {firstSliderData, fsNewsData, getStartedData, exploreData} = props
+    const {firstSliderData, fsNewsData, secondSliderData, getStartedData, exploreData} = props
     return (
         <div>
-            <Slider data={firstSliderData} news={fsNewsData}/>
+            <Slider mode={'first'} data={firstSliderData} news={fsNewsData}/>
             <AboutIOTA/>
+            <Slider mode={'second'} data={secondSliderData}/>
             <Introduce/>
             <GetStarted data={getStartedData}/>
             <Explore data={exploreData}/>
@@ -22,12 +23,14 @@ export async function getStaticProps() {
 
     const firstSliderData = await getHomePageData('first-slider')
     const fsNewsData = await getHomePageData('first-slider-news')
+    const secondSliderData = await getHomePageData('second-slider')
     const getStartedData = await getHomePageData('get-started')
     const exploreData = await getHomePageData('explore')
     return {
         props: {
             firstSliderData,
             fsNewsData,
+            secondSliderData,
             getStartedData,
             exploreData
         }
