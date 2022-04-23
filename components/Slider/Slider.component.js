@@ -1,11 +1,5 @@
 import React, {useRef, useEffect, useState} from "react";
-import SwiperCore, {
-    Navigation,
-    HashNavigation,
-    Scrollbar,
-    A11y, Autoplay,
-    EffectFade,
-} from "swiper";
+import SwiperCore, {Navigation, A11y, Autoplay, EffectFade,} from "swiper";
 
 import {Swiper, SwiperSlide} from "swiper/react";
 import NewsCard from "../NewsCard/NewsCard.component";
@@ -15,14 +9,12 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import 'swiper/css/bundle';
 
-
 import styles from './Slider.module.scss'
 
-SwiperCore.use([Navigation, Autoplay, HashNavigation, Scrollbar, EffectFade, A11y]);
+SwiperCore.use([Navigation, Autoplay, EffectFade, A11y]);
 
 export default function Slider(props) {
     const swiperRef = useRef(null);
-    const buttonRef = useRef(null);
 
     const [activeSlide, setActiveSlide] = useState(1)
 
@@ -45,41 +37,40 @@ export default function Slider(props) {
         compeleteData = videoFiles.map((item, i) => Object.assign({}, item, props.data[i]));
     }
 
-    const nextSlide = () => {
-        console.log("click next", swiperRef.current);
-        swiperRef.current.swiper.slideNext();
-    };
     const toSlide = (num) => {
-        console.log("go to slide", num);
-        swiperRef.current.swiper.slideTo(num - 1);
+        if (num === 0) {
+            num = compeleteData.length
+        } else if (num > compeleteData.length) {
+            num = 1
+        }
         setActiveSlide(num)
+        swiperRef.current.swiper.slideTo(num - 1);
     };
 
-    const handleAutoPlay = async (realIndex) => {
-        console.log(realIndex + 1)
-        console.log('hajiii avaz shod ', swiperRef.current.swiper.realIndex + 1)
-        await setActiveSlide(realIndex + 1)
-
+    const handleAutoPlay = (realIndex) => {
+        setActiveSlide(realIndex + 1)
         const play = document.getElementById(`video-${+realIndex + 1}`)
         play.currentTime = 0;
-        await play.play();
+        play.play();
     }
 
+    const handleAutoPlayFirst = (fsRealIndex) => {
+        setActiveSlide(fsRealIndex + 1)
+        const firstElement = document.getElementById(`firstSlideVid-${fsRealIndex + 1}`)
+        firstElement.currentTime = 0;
+        firstElement.play();
+    }
 
-    // const handleAutoPlayFirst = (fsRealIndex) => {
-    //     const firstElement = document.getElementById(`firstSlideVid-${fsRealIndex+1}`)
-    //     firstElement.currentTime = 0;
-    //     firstElement.play();
-    //     // console.log(fsRealIndex)
-    // }
+    useEffect(() => {
+        toSlide(activeSlide)
+    }, [activeSlide])
 
-    // useEffect(async() => {
-    //     console.log(activeSlide)
-    //     const element = document.getElementById(`video-${+activeSlide}`)
-    //     console.log(element)
-    //     element.currentTime = 0;
-    //     await element.play();
-    // }, [activeSlide])
+    useEffect(() => {
+        const SliderInterval = setInterval(() => {
+            setActiveSlide(prevState => prevState + 1)
+        }, 7000);
+        return () => clearInterval(SliderInterval);
+    }, [])
 
 
     return (
@@ -92,21 +83,38 @@ export default function Slider(props) {
                         ref={swiperRef}
                         slidesPerView={"auto"}
                         loop={true}
-                        loopedSlides={3}
-                        runCallbacksOnInit={true}
                         centeredSlides={true}
-                        autoplay={{
-                            delay: 7000,
-                            disableOnInteraction: false,
-                        }}
+                        // autoplay={{
+                        //     delay: 7000,
+                        //     disableOnInteraction: false,
+                        // }}
                         pagination={{
                             clickable: true,
                         }}
-                        navigation={true}
-                        modules={[Autoplay, Navigation]}
+                        modules={[Autoplay]}
+                        effect={'fade'}
+                        onSlideChange={(swiper) => handleAutoPlayFirst(swiper.realIndex)}
+                        fadeEffect={{
+                            crossFade: true
+                        }}
                         className="mySwiper"
                     >
                         <hr/>
+                        <div className={styles.navigation}>
+                            <div className={styles.container}>
+                                <div className={styles.navigationContent}>
+                                    <button className={styles.navigationContent_nextBtn}
+                                            onClick={() => toSlide(activeSlide - 1)}>
+                                        <img src="/assets/images/left-arrow-next-svgrepo-com.svg" alt="right-arrow"/>
+                                    </button>
+                                    <button className={styles.navigationContent_prevBtn}
+                                            onClick={() => toSlide(activeSlide + 1)}>
+                                        <img src="/assets/images/right-arrow-next-svgrepo-com.svg" alt="left-arrow"/>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                         {
                             compeleteData.map(item => {
                                 return (
@@ -115,7 +123,7 @@ export default function Slider(props) {
                                             src={item.path}
                                             id={`firstSlideVid-${item.id}`}
                                             muted
-                                            autoPlay={"autoplay"}
+                                            autoPlay={activeSlide === +item.id}
                                             loop
                                         >{item.subject}</video>
 
@@ -143,16 +151,15 @@ export default function Slider(props) {
                         slidesPerView={"auto"}
                         loop={true}
                         centeredSlides={true}
-                        autoplay={{
-                            delay: 7000,
-                            disableOnInteraction: false,
-                        }}
+                        // autoplay={{
+                        //     delay: 7000,
+                        //     disableOnInteraction: false,
+                        // }}
                         pagination={{
                             clickable: true,
                         }}
-                        navigation={true}
-                        modules={[Autoplay, Navigation]}
-                        className="mySwiper"
+                        modules={[Autoplay]}
+                        className="mySwiper2"
                         effect={'fade'}
                         onSlideChange={(swiper) => handleAutoPlay(swiper.realIndex)}
                         fadeEffect={{
@@ -164,74 +171,61 @@ export default function Slider(props) {
                             <h1 className={styles.secondSliderHeader_description}>IOTA Enables New Possibilities</h1>
                         </div>
 
-                        <hr/>
-
-                        {/*<div className={styles.filter}></div>*/}
-                        <div className={styles.subjectsContent}>
-
-                            {
-                                props.data.map(item => {
-                                    return (
-                                        <div
-                                            className={activeSlide === +item.id ? styles.subjectActive : styles.subject}
-                                            key={item.id}
-                                            onClick={() => toSlide(+item.id)}>
-                                            <span className={styles.subject_text}>{item.subject}</span>
-                                            <div className={styles.subject_visit}>
-                                                <span>visit page</span>
-                                                <img src="/assets/images/down-arrow-of-angle-svgrepo-com.svg" alt=""/>
-                                            </div>
-                                            <div className={styles.subject_dot}></div>
-                                            <div className={styles.subject_hoverCircle}></div>
-                                        </div>
-                                    )
-                                })
-                            }
+                        <div className={styles.navigation}>
+                            <div className={styles.container}>
+                                <div className={styles.navigationContent}>
+                                    <button className={styles.navigationContent_nextBtn}
+                                            onClick={() => toSlide(activeSlide - 1)}>
+                                        <img src="/assets/images/left-arrow-next-svgrepo-com.svg" alt="right-arrow"/>
+                                    </button>
+                                    <button className={styles.navigationContent_prevBtn}
+                                            onClick={() => toSlide(activeSlide + 1)}>
+                                        <img src="/assets/images/right-arrow-next-svgrepo-com.svg" alt="left-arrow"/>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
 
-                        {/*<SwiperSlide>*/}
-                        {/*    <video*/}
-                        {/*        src={'/assets/videos/Home_4.webm'}*/}
-                        {/*        muted*/}
-                        {/*        autoPlay={true}*/}
-                        {/*        loop*/}
-                        {/*    >maraz*/}
-                        {/*    </video>*/}
-                        {/*</SwiperSlide>*/}
-                        {/*<SwiperSlide>*/}
-                        {/*    <video*/}
-                        {/*        src={'/assets/videos/Home_5.webm'}*/}
-                        {/*        muted*/}
-                        {/*        autoPlay={false}*/}
-                        {/*        loop*/}
-                        {/*    >maraz*/}
-                        {/*    </video>*/}
-                        {/*</SwiperSlide>*/}
-                        {/*<SwiperSlide>*/}
-                        {/*    <video*/}
-                        {/*        src={'/assets/videos/Home_6.webm'}*/}
-                        {/*        muted*/}
-                        {/*        autoPlay={true}*/}
-                        {/*        loop*/}
-                        {/*    >maraz*/}
-                        {/*    </video>*/}
-                        {/*</SwiperSlide>*/}
+                        <hr/>
 
+                        <div className={styles.subjects}>
+                            <div className={styles.container}>
+                                <div className={styles.subjectsContent}>
+                                    {
+                                        props.data.map(item => {
+                                            return (
+                                                <div
+                                                    className={activeSlide === +item.id ? styles.subjectActive : styles.subject}
+                                                    key={item.id}
+                                                    onClick={() => toSlide(+item.id)}>
+                                                    <span className={styles.subject_text}>{item.subject}</span>
+                                                    <div className={styles.subject_visit}>
+                                                        <span>visit page</span>
+                                                        <img src="/assets/images/down-arrow-of-angle-svgrepo-com.svg"
+                                                             alt=""/>
+                                                    </div>
+                                                    <div className={styles.subject_dot}></div>
+                                                    <div className={styles.subject_hoverCircle}></div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                        </div>
 
                         {
                             compeleteData.map(item => {
                                 return (
+
                                     <SwiperSlide key={item.id}>
-                                        {/*{console.log(activeSlide)}*/}
-                                        {/*{console.log(+item.id)}*/}
-
-
+                                        <div className={styles.filter}></div>
                                         <video
                                             className={`second-slider-videos`}
                                             id={`video-${+item.id}`}
                                             src={item.path}
                                             muted
-                                            autoPlay={true}
+                                            autoPlay={activeSlide === +item.id}
                                             loop
                                         >{item.subject}</video>
 
@@ -244,21 +238,19 @@ export default function Slider(props) {
                                                             <div className={styles.features} key={capability.id}>
                                                                 <div className={styles.features_item}>
                                                                     <img
-                                                                        src="/assets/images/fingerprint-svgrepo-com.svg"
+                                                                        src={capability.icon}
                                                                         className={styles.features_item_icon} alt=""/>
                                                                     <h3 className={styles.features_item_title}>{capability.title}</h3>
                                                                     <span
                                                                         className={styles.features_item_description}>{capability.description}</span>
                                                                 </div>
                                                             </div>
-
                                                         )
                                                     })
                                                 }
                                             </div>
                                         </div>
-
-
+                                        <button className={styles.btn}>EXPLORE MORE</button>
                                     </SwiperSlide>
                                 )
                             })

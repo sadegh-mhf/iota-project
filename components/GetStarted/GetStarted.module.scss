@@ -45,4 +45,10 @@
   margin: 50px 0 110px;
   letter-spacing: 0.1rem;
   cursor: pointer;
+  transition: 0.3s all ease-in-out;
+
+  &:hover{
+    border: 2px solid #e9eff0;
+    transition: 0.3s all ease-in-out;
+  }
 }
